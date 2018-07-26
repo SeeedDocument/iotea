@@ -3,7 +3,7 @@ from DBUtils.PooledDB import PooledDB
 import configparser
 
 cf = configparser.ConfigParser()
-cf.read("/data/www/python3_iotea_demo/iotea/conf/db.ini")
+cf.read("/data/www/python3_iotea/iotea/conf/db.ini")
 # 打开数据库连接
 # conn = pymysql.connect("localhost", "root", "1234", "iotea")
 # conn = pymysql.connect(host="47.89.243.140", user="root", password="root", db="iotea")
@@ -30,7 +30,7 @@ pool = PooledDB(pymysql, 5, host=str(host), user=str(user), passwd=str(passwd), 
 def insert(list):
 	conn = pool.connection()
 	cur = conn.cursor()
-	sql = "insert into iotea_1 (date,hour, minute ,second ,air_temp,air_hum,pressure,co2,dust,illumination," \
+	sql = "insert into iotea (date,hour, minute ,second ,air_temp,air_hum,pressure,co2,dust,illumination," \
 		  "o2,soil_temp,soil_hum,voltage,error)" \
 		  " values ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')" \
 		  %(list[0],list[1],list[2],list[3],list[4],list[5],list[6],list[7],list[8],list[9],
@@ -45,7 +45,7 @@ def insert(list):
 def readMax():
 	conn = pool.connection()
 	cur = conn.cursor()
-	sql="SELECT  * FROM iotea_1 where id =(SELECT  max(id) FROM iotea_1)"
+	sql="SELECT  * FROM iotea where id =(SELECT  max(id) FROM iotea)"
 	r = cur.execute(sql)
 	r = cur.fetchall()
 	cur.close()
@@ -57,7 +57,7 @@ def readMax():
 def readMinMinute(time): # time[date,hour]
 	conn = pool.connection()
 	cur = conn.cursor()
-	sql = "SELECT  * FROM iotea_1 where date = '%s' and hour = '%s' LIMIT 1" % (time[0], time[1])
+	sql = "SELECT  * FROM iotea where date = '%s' and hour = '%s' LIMIT 1" % (time[0], time[1])
 	r = cur.execute(sql)
 	r = cur.fetchall()
 	cur.close()
@@ -70,7 +70,7 @@ def readMinMinute(time): # time[date,hour]
 def readByDate(date):
 	conn = pool.connection()
 	cur = conn.cursor()
-	sql = "SELECT  * FROM iotea_1 where date = '%s' and hour = '12' LIMIT 1" % ( date )
+	sql = "SELECT  * FROM iotea where date = '%s' and hour = '12' LIMIT 1" % ( date )
 	r = cur.execute(sql)
 	r = cur.fetchall()
 	cur.close()
