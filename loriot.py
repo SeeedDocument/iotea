@@ -68,7 +68,7 @@ def getLoriotData():
 			error = str(int(data[28:], 16))
 			
 			# temp solution
-			soil_temp = str(int(air_temp) - int(float(air_hum)/20))
+			soil_temp = str(int(air_temp) - int(float(air_hum)/20)+2)
 			if int(air_temp) < 10:
 				soil_hum = '89'
 			else:
