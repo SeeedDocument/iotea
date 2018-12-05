@@ -76,6 +76,7 @@ def getLoriotData():
 
 			air_hum = str(100-int(float(air_temp)))
 			
+			co2 = str(388)
 
 			o2 = str(round(float(20.8 + (int(second) % 3)/10), 1))
 
