@@ -71,22 +71,15 @@ def getLoriotData():
 			soil_temp = str(int(air_temp) - int(float(air_hum)/20)+5)
 			if int(air_temp) < 10:
 				soil_hum = '90'
-				co2 = str(388)
-				dust = str(195)
-			elif 10 = < int(air_temp) < 13:
-				soil_hum = '88'
-				co2 = str(379)
-				dust = str(207)
 			else:
-				soil_hum = '80'
-				co2 = str(366)
-				dust = str(220)
+				soil_hum = '87'
+
 
 			air_hum = str(100-int(float(air_temp)))
 			
 			co2 = str(388)
 
-
+			dust = str(197)
 
 			o2 = str(round(float(20.8 + (int(second) % 3)/10), 1))
 
