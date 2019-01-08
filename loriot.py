@@ -74,6 +74,8 @@ def getLoriotData():
 			else:
 				soil_hum = '87'
 
+			air_temp = str(5)
+			air_hum = str(86)
 
 			air_hum = str(100-int(float(air_temp)))
 			
